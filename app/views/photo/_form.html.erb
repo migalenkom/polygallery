@@ -1,0 +1,16 @@
+<div class="row">
+    <%= form_tag '/photo/search', :method => "get" do %>
+        <% if flash[:error_msg] %>
+          <div class="alert alert-danger" role="alert"><%= flash.now[:error_msg] %></div>
+        <% end %>
+
+        <div class="col-lg-6">
+          <div class="input-group">
+            <%= text_field_tag(:search_input, params[:search_input], class: 'form-control') %>
+            <span class="input-group-btn">
+            <%= submit_tag("Search!", class: 'btn btn-default') %>
+          </span>
+          </div>
+        </div>
+    <% end %>
+</div>

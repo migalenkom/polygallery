@@ -1,0 +1,15 @@
+# Global config options accessed by AppConfig.foo
+defaults: &defaults
+  results_per_page: 8
+  cache_expiry_minutes: 5
+  cache_race_ttl_minutes: 2
+  flickr_max_results: 100
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

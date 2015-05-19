@@ -1,0 +1,23 @@
+<%= render 'header' %>
+
+<div class="container">
+  <h1 class="page-header">Results</h1>
+
+  <%= render 'form' %>
+
+  <br />
+
+  <div class="row thumbs">
+    <% @results.each do |photo, index| %>
+        <div class="col-xs-6 col-md-3">
+          <a href="<%= photo.url_c %>" data-toggle="lightbox" class="thumbnail" data-title="<%= photo.title %>">
+            <img src="<%= photo.url_q %>" class="img-responsive">
+          </a>
+        </div>
+    <% end %>
+  </div>
+
+  <% if @results.any? %>
+    <%= will_paginate @results, renderer: BootstrapPagination::Rails %>
+  <% end %>
+</div>

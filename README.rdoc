@@ -1,0 +1,71 @@
+== README
+
+Running demo on Heroku: http://safe-ocean-7893.herokuapp.com/
+
+== Brief
+
+The Flickr API has a method which allows you to search photos. Create a Ruby on Rails web application that allows users
+to search for, and view, Flickr photos. The purpose of this exercise is to provide you with an opportunity to
+demonstrate your ability to create a Ruby on Rails web application, to show us how you translate requirements into a
+working application, and to provide us with an opportunity to assess your problem solving, design and development
+skills. The requirements below are purposely light. The devil’s in the detail and it’s the little things that count.
+
+== Requirements
+
+* When the user performs a search, they should see a paginated list of search results
+* When the user clicks on a search result, they should see a larger sized image
+* Test with RSpec
+* Commit to GitHub
+* Deploy to Heroku
+* Send your GitHub and Heroku links to PwC
+
+== Comments
+
+* Failed adopting the flickr_fu gem (doesn't support HTTPS)
+* Originally paginated Flickr API calls, but resorted to entire list in order to get pagination working in the app
+* No authentication required
+* Extended Flickraw classes to support pagination of Array (not working on Flickraw Response objects).
+* RSpec pain: RubyMine RSpec warning: The Spec::Runner::Formatter::TeamcityFormatter formatter uses the deprecated formatter interface not supported directly by RSpec 3. Installed rspec-legacy_formatters, but could not load: LoadError. Running 'rake spec' throws error 'NameError: uninitialized constant RSpec::Support'.
+* No self.errors avaiable in the controller, had to use flash.now instead
+* RSpec have(n).items undefined error
+* No unit tests, RSpec for all
+* RSpec couldn't avoid breaking DRY, before(:all) doesn't work for setting up requests (http://stackoverflow.com/questions/7676728/speeding-up-rspec-controllers-test-using-before-all-fails)
+* Flickr image sizes: selected url_q for thumbnail and url_c for larger image
+* Bootstrap with SASS for styling
+* Thumbs per page at arbitrary 8
+* Checked API credentials (secret.yml) into source control on purpose (for this exercise)
+* Handy Heroku tip for error logs: heroku run rails console
+* Code comments
+* Deployed to Heroku (requires 'pg' gem defined although never used)
+* Basic caching to improve performance, but results will become stale
+* Global config YAML properties file (AppConfig)
+* Form uses GET requests to support the pagination gem
+* Bootstrap lightbox for displaying larger images in the modal popup
+
+== Further Investigation
+
+* Where is the correct place to put the Flickraw::Response class extension code? (currently in controller)
+* Understand the 'assigns' keyword better in: expect(assigns(:foo))
+* Should I have written RSpec request tests? Testing the pagination perhaps?
+* Are helper classes only for self. methods?
+* Proper way to compile assets for production rather than (config.assets.compile = true)?
+* Memcached as the caching solution? Need better understanding of global/session and expiry/invalidation.
+
+== TO DO
+
+* RSpec pagination testing? Run all tests at once?
+
+== Resources
+
+* http://www.pixellatedvisions.com/2009/04/06/integrating-flickr-into-your-rails-website (starting point, gem doesn't work)
+* https://github.com/chaoyee/flkrshare (point to new gem)
+* http://hanklords.github.io/flickraw/ (the gem)
+* https://github.com/rspec/rspec-rails (RSpec)
+* https://twitter.com/anoras/status/438354633720090624 (RSpec warning)
+* https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers (RSpec matchers)
+* https://gist.github.com/them0nk/2166525 (RSpec cheatsheet)
+* http://www.gotealeaf.com/blog/integrating-rails-and-bootstrap-part-1 (Bootstrap)
+* https://github.com/mislav/will_paginate/blob/master/lib/will_paginate/array.rb (paginate any array object)
+* http://stackoverflow.com/questions/13187076/paginating-an-array-in-ruby-with-will-paginate (good examples)
+* https://github.com/bootstrap-ruby/will_paginate-bootstrap (Bootstrap styled pagination)
+* http://stackoverflow.com/questions/592554/best-way-to-create-custom-config-options-for-my-rails-app (custom config)
